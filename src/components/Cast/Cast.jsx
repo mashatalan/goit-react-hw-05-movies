@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { fetchMovieCast } from '../../services/API';
 import { useParams } from 'react-router-dom';
-import { List, ActorItem } from './Cast.styled';
+import { List, ActorItem, P } from './Cast.styled';
+import BackToTop from '../BackToTop';
+
 
 const BASE_IMG_URL = 'https://image.tmdb.org/t/p/w500';
-const GOOGLE_SEARCH = 'https://www.google.com/search?q='; const defaultImgCast = 'https://www.tgv.com.my/assets/images/404/movie-poster.jpg';
+const GOOGLE_SEARCH = 'https://www.google.com/search?q=';
+const defaultImgCast = 'https://www.tgv.com.my/assets/images/404/movie-poster.jpg';
 const Cast = () => {
   const { movieId } = useParams();
 
@@ -19,7 +22,6 @@ const Cast = () => {
         setIsLoading(true);
         const movieCast = await fetchMovieCast(movieId);
         setCast(movieCast.cast);
-        console.log('mx', cast);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -31,7 +33,13 @@ const Cast = () => {
   }, [cast, movieId]);
 
   return (
-    <>
+
+    <div>
+      {cast.length === 0 && (
+        <P>
+          We don't have any cast for this movie
+        </P>
+      )}
       <List>
         {cast.map(cast => (
           <ActorItem key={cast.id}>
@@ -54,8 +62,10 @@ const Cast = () => {
           </ActorItem>
         ))}
       </List>
-    </>
+      <BackToTop />
+    </div>
   );
 };
+
 
 export default Cast;

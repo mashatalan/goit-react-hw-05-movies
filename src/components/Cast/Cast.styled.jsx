@@ -19,3 +19,13 @@ export const ActorItem = styled.li`
     transform: scale(1.05);
   }
 `;
+export const P = styled.p`
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 18px;
+  border: 2px solid purple ;
+  border-radius: 10px;
+  background-color: plum;
+  padding: 10px;
+
+`;

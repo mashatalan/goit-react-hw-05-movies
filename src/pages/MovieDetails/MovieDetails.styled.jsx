@@ -26,10 +26,12 @@ export const MovieWrapper = styled.div`
 
 export const ImgWrapper = styled.div`
  margin-right: 30px;
-  border-radius: 50%;
+  Img {
+    width: 570px;
+    max-width: initial;
+    border-radius: 10px;
+  }
 `;
-
-
 
 export const P = styled.p`
   font-size: 16px;
@@ -40,6 +42,7 @@ export const Overview = styled.p`
   font-size: 16px;
   font-weight: 500;
   margin: 10px 10px 10px 0;
+  text-align: justify;
   overflow-y: auto;
   height: 150px;
 `;
@@ -55,7 +58,8 @@ export const H = styled.h2`
   margin-bottom: 20px;
   font-weight: bold;
 `;
-export const Information = styled.li`
+export const RouterLink = styled(Link)`
+  display: block;
   font-weight: bold;
   margin-bottom: 10px;
   box-shadow: 0 2px 4px 2px purple;

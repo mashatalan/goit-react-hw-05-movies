@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { fetchMovies } from '../../services/API';
 import MovieList from '../../components/MovieList';
 import ErrorMessage from '../../components/ErrorMessage';
+import Loader from '../../components/Loader';
 
 const Home = () => {
-  const [movies, setMovies] = useState(() => JSON.parse(localStorage.getItem('movies')) ?? []);
-  const [, setIsLoading] = useState(false);
+  const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -14,7 +15,6 @@ const Home = () => {
         setIsLoading(true);
         const movies = await fetchMovies();
         setMovies(movies.results);
-        localStorage.setItem('movies', JSON.stringify(movies.results));
 
       } catch (error) {
         setError(error.message);
@@ -25,6 +25,10 @@ const Home = () => {
     fetchMoviesData();
   }, []);
 
+
+  if (movies === null || isLoading) {
+    return <Loader />;
+  }
 
   return (
     <div>

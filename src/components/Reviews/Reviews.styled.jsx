@@ -18,3 +18,9 @@ export const P = styled.p`
   padding: 10px;
 
 `;
+export const Content = styled.p`
+  text-align: justify;
+  margin-top: 10px;
+  padding: 10px;
+  background-color:burlywood;
+`;

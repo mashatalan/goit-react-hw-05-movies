@@ -16,7 +16,7 @@ import BackToTop from '../BackToTop';
 
 const MovieList = ({ movies }) => {
   const location = useLocation();
-  const [isLoading,] = useState(false);
+  const [isLoading] = useState(false);
 
   if (isLoading) {
     return <Loader />;
@@ -24,26 +24,27 @@ const MovieList = ({ movies }) => {
 
   return (
 
-        <>
-          <MovieListContainer>
-            {movies.map(movie => (
-              <CustomLink state={{ from: location }} key={movie.id} to={`/movies/${movie.id}`}>
-                <MovieItem>
-                  <Wrapper>
-                    <MovieImage img={movie.poster_path} alt={movie.title} />
-                    <WrapperDescription>
-                      <WrapperContent>
-                        <MovieTitle>{movie.original_title}</MovieTitle>
-                      </WrapperContent>
-                    </WrapperDescription>
-                  </Wrapper>
-                </MovieItem>
-              </CustomLink>
-            ))}
-          </MovieListContainer>
-          <BackToTop />
-        </>
-      )}
+    <>
+      <MovieListContainer>
+        {movies.map(movie => (
+          <CustomLink state={{ from: location }} key={movie.id} to={`/movies/${movie.id}`}>
+            <MovieItem>
+              <Wrapper>
+                <MovieImage img={movie.poster_path} alt={movie.title} />
+                <WrapperDescription>
+                  <WrapperContent>
+                    <MovieTitle>{movie.original_title}</MovieTitle>
+                  </WrapperContent>
+                </WrapperDescription>
+              </Wrapper>
+            </MovieItem>
+          </CustomLink>
+        ))}
+      </MovieListContainer>
+      <BackToTop />
+    </>
+  );
+};
 
 
 MovieList.propTypes = {

@@ -1,17 +1,15 @@
-import React, { lazy, Suspense, useEffect, useRef, useState } from 'react';
-import { Link, useLocation, useParams } from 'react-router-dom';
-import { Routes, Route } from 'react-router-dom';
+import React, {  Suspense, useEffect, useRef, useState } from 'react';
+import {  Outlet, useLocation, useParams } from 'react-router-dom';
 import { fetchMovieDetails } from '../../services/API';
 import {
-  BackButton, H, ImgWrapper, Information, Li, MovieWrapper, Overview, P,
+  BackButton, H, ImgWrapper, Li, MovieWrapper, Overview, P, RouterLink,
 } from './MovieDetails.styled';
 import Loader from '../../components/Loader';
 import ErrorMessage from '../../components/ErrorMessage';
 import ImgCart from '../../components/ImgCart';
 
 
-const Cast = lazy(() => import('../../components/Cast'));
-const Reviews = lazy(() => import('../../components/Reviews'));
+
 
 const MovieDetails = () => {
   const location = useLocation();
@@ -76,16 +74,13 @@ const MovieDetails = () => {
       <div>
         <H>Additional information</H>
         <ul>
-          <Information><Link to='cast'>&#10686; Cast</Link></Information>
-          <Information><Link to='reviews'>&#10686; Reviews</Link></Information>
+          <li><RouterLink to='cast'>&#10686; Cast</RouterLink></li>
+          <li><RouterLink to='reviews'>&#10686; Reviews</RouterLink></li>
 
         </ul>
       </div>
       <Suspense fallback={<Loader />}>
-        <Routes>
-          <Route path='cast' element={<Cast />} />
-          <Route path='reviews' element={<Reviews />} />
-        </Routes>
+       <Outlet/>
       </Suspense>
     </div>
   );
